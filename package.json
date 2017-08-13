@@ -1,0 +1,11 @@
+{
+	"name": "lost",
+	"version": "0.0.1",
+	"devDependencies": {
+		"grunt": "latest",
+		"grunt-contrib-uglify": "latest",
+		"grunt-minify-html": "latest",
+		"grunt-replace": "latest",
+		"jsfxr": "latest"
+	}
+}
