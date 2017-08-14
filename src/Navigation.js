@@ -2,21 +2,30 @@ AFRAME.registerComponent("navigation", {
 	init: function(){
 		var _this = this;
 		if(this.el){
-			console.log(this.el);
 			this.el.addEventListener("click", function(){_this.click()});
 		}
 	},
 	
 	click: function(){
-		console.log("Nav node clicked!");
-		var player = this.el.sceneEl.querySelector('#player');
-		
+		var player = this.el.sceneEl.querySelector("#player");
+
 		var thisPos = this.el.getAttribute("position");
 		var playerPos = player.getAttribute("position");
 		
-		player.setAttribute("position", {x: thisPos.x, y: playerPos.y, z: thisPos.z});
+		var pos = "" + thisPos.x + " " + playerPos.y + " " + thisPos.z;
+		
+		var animation = document.createElement("a-animation");
+		animation.setAttribute("attribute", "position");
+		animation.setAttribute("to", pos);
+		animation.setAttribute("dur", "500");
+		animation.setAttribute("repeat", "0");
+		
+		player.appendChild(animation);
+		
+		//Hide this nav
 		this.el.setAttribute("visible", false);
 		
+		//Reset other navs
 		var navList = this.el.sceneEl.querySelectorAll("[navigation]");
 		for(var i = 0; i < navList.length; i++){
 			var nav = navList[i];

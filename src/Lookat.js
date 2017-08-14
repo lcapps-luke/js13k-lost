@@ -13,8 +13,6 @@ AFRAME.registerComponent("lookat", {
 			return;
 		}
 		
-		console.log(this.data);
-		
 		if (this.data.hasLoaded) {
 			this.target = this.data.object3D;
 		}else{
