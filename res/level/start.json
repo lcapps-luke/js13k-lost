@@ -1,0 +1,78 @@
+[
+	{
+		"type": "a-sky",
+		"attr": {
+			"color": "#00AAEE"
+		}
+	},
+	{
+		"type": "a-entity",
+		"attr": {
+			"light": "shadowCameraRight: 16.82; shadowCameraLeft: -22.24; shadowCameraTop: 13; shadowCameraBottom: -13.31; shadowCameraFar: 499.82; castShadow: true",
+			"position": "-11.089 19.35 -12.085"
+		}
+	},
+	
+	{
+		"type": "a-plane",
+		"attr": {
+			"rotation": "-90 0 0",
+			"width": "100",
+			"height": "100",
+			"color": "#009b00",
+			"shadow": ""
+		}
+	},
+	{
+		"type": "a-box",
+		"attr": {
+			"position": "5 2.5 -2.5",
+			"color": "#4CC3D9",
+			"material": "",
+			"geometry": "height:5;width:10",
+			"shadow": ""
+		}
+	},
+	{
+		"type": "a-box",
+		"attr": {
+			"position": "5 5.5 0",
+			"rotation": "90 0 0",
+			"color": "#4CC3D9",
+			"material": "",
+			"geometry": "height:5;width:10",
+			"shadow": ""
+		}
+	},
+	{
+		"type": "a-box",
+		"attr": {
+			"position": "5 2.5 2.5",
+			"color": "#4CC3D9",
+			"material": "",
+			"geometry": "height:5;width:10",
+			"shadow": ""
+		}
+	},
+	
+	{
+		"template": "navNode",
+		"attr": {
+			"position": "-9 2 0",
+			"visible": "false"
+		}
+	},
+	{
+		"template": "navNode",
+		"attr": {
+			"position": "0 2 0"
+		}
+	},
+	{
+		"template": "navNode",
+		"attr": {
+			"position": "9 2 0"
+		}
+	}
+	
+]

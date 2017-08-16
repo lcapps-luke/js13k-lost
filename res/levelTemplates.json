@@ -1,0 +1,12 @@
+{
+	"navNode": {
+		"type": "a-entity",
+		"attr": {
+			"geometry": "primitive:circle" ,
+			"material": "shader:flat;flatShading:true",
+			"lookat": "#player" ,
+			"class": "clickable",
+			"navigation": ""
+		}
+	}
+}

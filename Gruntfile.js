@@ -4,7 +4,7 @@ module.exports = function(grunt){
 		uglify: {
 			build: {
 				files: {
-					"bin/main.min.js": ["src/*.js"]
+					"bin/main.min.js": ["gen/*.js", "src/*.js"]
 				}
 			}
 		},
@@ -34,12 +34,24 @@ module.exports = function(grunt){
 					}
 				]
 			}
+		},
+		zip: {
+			build: {
+				cwd: "build/",
+				src: ["build/index.html"],
+				dest: "build/lost.zip",
+				compression: 'DEFLATE'
+			}
 		}
 	});
 	
+	grunt.loadTasks("tasks");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 	grunt.loadNpmTasks("grunt-minify-html");
 	grunt.loadNpmTasks("grunt-replace");
+	grunt.loadNpmTasks("grunt-zip");
 	
-	grunt.registerTask("default", ["uglify", "minifyHtml", "replace"]);
+	grunt.registerTask("build", ["levelGen", "uglify", "minifyHtml", "replace"]);
+	grunt.registerTask("package", ["zip"]);
+	grunt.registerTask("default", ["build", "package"]);
 };

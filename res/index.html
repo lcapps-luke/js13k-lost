@@ -7,10 +7,7 @@
 	</head>
 	<body>
 		<a-scene lost>
-			<a-sky color="#00AAEE"></a-sky>
-			<a-entity light="type:directional; castShadow:true;" position="1 1 1"></a-entity>
-			
-			<a-entity id="player" position="-2.395 1.6 2.221" camera="userHeight:1.6" wasd-controls="" rotation="-10.657 336.555 0" look-controls="">
+			<a-entity id="player" position="-9 0 0" camera="userHeight:1.6" wasd-controls="" rotation="0 270 0" look-controls="">
 				<a-entity 
 					cursor="fuse: true; fuseTimeout: 1000;" position="0 0 -3" 
 					geometry="primitive:circle; radius: 0.2;"
@@ -21,36 +18,6 @@
 					<a-animation begin="fusing" end="mouseleave" easing="ease-in" attribute="scale" from="1.0 1.0 1.0" to="0.2 0.2 0.2" fill="backwards" duration="1000"></a-animation>
 				</a-entity>
 			</a-entity>
-			
-			<a-plane rotation="-90 0 0" width="100" height="100" color="#888888" shadow></a-plane>
-			<a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow="receive: false"></a-box>
-			
-			<a-entity 
-				position="-8 2 -4" 
-				geometry="primitive:circle" 
-				material="shader:flat;flatShading:true" 
-				lookat="#player" 
-				class="clickable"
-				navigation
-			></a-entity>
-			
-			<a-entity 
-				position="4 2 -9" 
-				geometry="primitive:circle" 
-				material="shader:flat;flatShading:true" 
-				lookat="#player" 
-				class="clickable"
-				navigation
-			></a-entity>
-			
-			<a-entity 
-				position="3 2 3" 
-				geometry="primitive:circle" 
-				material="shader:flat;flatShading:true" 
-				lookat="#player" 
-				class="clickable"
-				navigation
-			></a-entity>
 		</a-scene>
 	</body>
 </html>

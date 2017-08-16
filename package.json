@@ -6,6 +6,7 @@
 		"grunt-contrib-uglify": "latest",
 		"grunt-minify-html": "latest",
 		"grunt-replace": "latest",
+		"grunt-zip": "latest",
 		"jsfxr": "latest"
 	}
 }
