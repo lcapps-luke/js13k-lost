@@ -7,13 +7,13 @@
 	</head>
 	<body>
 		<a-scene lost>
-			<a-entity id="player" position="-9 0 0" camera="userHeight:1.6" wasd-controls="" rotation="0 270 0" look-controls="">
-				<a-entity 
+			<a-entity id="player" position="-9 0 0" camera="userHeight:1.6" wasd-controls="" rotation="0 270 0" look-controls="" class="global">
+				<a-entity class="cursor"
 					cursor="fuse: true; fuseTimeout: 1000;" position="0 0 -3" 
 					geometry="primitive:circle; radius: 0.2;"
 					material="color: cyan; shader: flat;"
 					scale="0.2 0.2 0.2"
-					raycaster="objects:.clickable"
+					raycaster="objects:.clickable; far:10"
 				>
 					<a-animation begin="fusing" end="mouseleave" easing="ease-in" attribute="scale" from="1.0 1.0 1.0" to="0.2 0.2 0.2" fill="backwards" duration="1000"></a-animation>
 				</a-entity>

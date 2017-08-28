@@ -1,13 +1,32 @@
 var fs = require('fs');
+var parseMaze = require("./../res/mazeParser.js");
 
 module.exports = function(grunt) {
 	grunt.registerTask('levelGen', function() {
 		var done = this.async();
 		
 		var levelTemplate = require("./../res/levelTemplates.json");
+		var mazeMap = {};
 		var levelMap = {};
 		
-		fs.readdir("./res/level", function(err, files){
+		fs.readdir("./res/maze", readMazeDir);
+		
+		function readMazeDir(err, files){
+			if(err){
+				throw err;
+			}
+			
+			for(var i = 0; i < files.length; i++){
+				var f = files[i];
+				
+				var mazeJson = require("./../res/maze/" + f);
+				mazeMap[f] = parseMaze(mazeJson);
+			}
+			
+			fs.readdir("./res/level", readLevelDir);
+		}
+		
+		function readLevelDir(err, files){
 			if(err){
 				throw err;
 			}
@@ -21,6 +40,7 @@ module.exports = function(grunt) {
 			
 			var levelJson = {
 				template: levelTemplate,
+				maze: mazeMap,
 				level: levelMap
 			};
 			
@@ -33,7 +53,6 @@ module.exports = function(grunt) {
 
 				done();
 			}); 
-		});
-		
+		}
 	});
 }

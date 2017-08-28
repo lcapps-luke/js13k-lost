@@ -1,78 +1,205 @@
-[
-	{
-		"type": "a-sky",
-		"attr": {
-			"color": "#00AAEE"
-		}
-	},
-	{
-		"type": "a-entity",
-		"attr": {
-			"light": "shadowCameraRight: 16.82; shadowCameraLeft: -22.24; shadowCameraTop: 13; shadowCameraBottom: -13.31; shadowCameraFar: 499.82; castShadow: true",
-			"position": "-11.089 19.35 -12.085"
-		}
+{
+	"player": {
+		"x": -9,
+		"y": 1.6,
+		"z": 0
 	},
 	
-	{
-		"type": "a-plane",
-		"attr": {
-			"rotation": "-90 0 0",
-			"width": "100",
-			"height": "100",
-			"color": "#009b00",
-			"shadow": ""
+	"objects": [
+		{
+			"type": "a-sky",
+			"attr": {
+				"color": "#00AAEE"
+			}
+		},
+		{
+			"type": "a-entity",
+			"attr": {
+				"light": "shadowCameraRight:44; shadowCameraLeft:-30; shadowCameraTop:26; shadowCameraBottom:-31; shadowCameraFar:150; shadowCameraNear:0; castShadow:true; shadowMapHeight: 512; shadowMapWidth: 512;",
+				"position": "-30 40 -15"
+			}
+		},
+
+		{
+			"type": "a-entity",
+			"attr": {
+				"light": "intensity:0.15;type:ambient"
+			}
+		},
+
+		{
+			"type": "a-plane",
+			"attr": {
+				"rotation": "-90 0 0",
+				"width": "100",
+				"height": "100",
+				"color": "#009b00",
+				"shadow": ""
+			}
+		},
+		{
+			"type": "a-box",
+			"attr": {
+				"position": "5 2.5 -2.5",
+				"color": "#4CC3D9",
+				"material": "",
+				"geometry": "height:5;width:10",
+				"shadow": "",
+				"class": "solid" 
+			}
+		},
+		{
+			"type": "a-box",
+			"attr": {
+				"position": "5 5.5 0",
+				"rotation": "90 0 0",
+				"color": "#4CC3D9",
+				"material": "",
+				"geometry": "height:5;width:10",
+				"shadow": "",
+				"class": "solid"
+			}
+		},
+		{
+			"type": "a-box",
+			"attr": {
+				"position": "5 2.5 2.5",
+				"color": "#4CC3D9",
+				"material": "",
+				"geometry": "height:5;width:10",
+				"shadow": "",
+				"class": "solid"
+			}
+		},
+		{
+			"type": "a-box",
+			"attr": {
+				"position": "9.392 2.047 -1.954",
+				"geometry": "depth:0.3;width:0.2;height:0.2",
+				"switch": "target:#door; event:open",
+				"class": "clickable",
+				"clickableupdator": "1500",
+				"lostsound": "snd:click; on: click"
+			}
+		},
+		{
+			"type": "a-entity",
+			"attr": {
+				"position": "10.246 2.524 0",
+				"id": "door",
+				"geometry": "width:0.5;height:5;depth:4",
+				"class": "solid"
+			},
+			"children": [
+				{
+					"type": "a-animation",
+					"attr": {
+						"begin": "open",
+						"attribute": "position",
+						"from": "10.246 2.524 0",
+						"to": "10.246 2.524 4",
+						"duration": "1500",
+						"easing": "ease-in",
+						"fill": "forwards"
+					}
+				}
+			]
+		},
+
+		{
+			"type": "a-entity",
+			"attr": {
+				"position": "-15 0 -25",
+				"forest": "30 20"
+			}
+		},
+		{
+			"type": "a-entity",
+			"attr": {
+				"position": "-15 0 3",
+				"forest": "30 20"
+			}
+		},
+		{
+			"type": "a-entity",
+			"attr": {
+				"position": "-35 0 -27",
+				"forest": "20 50"
+			}
+		},
+
+		{
+			"type": "a-entity",
+			"attr": {
+				"position": "-38 4 -0",
+				"rotation": "0 90 0",
+				"geometry": "width:60;height:8;primitive:plane",
+				"material": "color:#391d00;shader:flat"
+			}
+		},
+		{
+			"type": "a-entity",
+			"attr": {
+				"position": "20 4 -0",
+				"rotation": "0 270 0",
+				"geometry": "width:60;height:8;primitive:plane",
+				"material": "color:#391d00;shader:flat"
+			}
+		},
+		{
+			"type": "a-entity",
+			"attr": {
+				"position": "-9 4 -28",
+				"rotation": "0 0 0",
+				"geometry": "width:60;height:8;primitive:plane",
+				"material": "color:#391d00;shader:flat"
+			}
+		},
+		{
+			"type": "a-entity",
+			"attr": {
+				"position": "-9 4 28",
+				"rotation": "0 180 0",
+				"geometry": "width:60;height:8;primitive:plane",
+				"material": "color:#391d00;shader:flat"
+			}
+		},
+
+		{
+			"template": "navNode",
+			"attr": {
+				"position": "-9 2 0",
+				"visible": "false"
+			}
+		},
+		{
+			"template": "navNode",
+			"attr": {
+				"position": "0 2 0"
+			}
+		},
+		{
+			"template": "navNode",
+			"attr": {
+				"position": "6.5 2 0"
+			}
+		},
+		{
+			"template": "navNode",
+			"attr": {
+				"position": "13 2 0"
+			}
+		},
+		{
+			"type": "a-entity",
+			"attr": {
+				"geometry": "primitive:circle" ,
+				"material": "shader:flat;flatShading:true",
+				"lookat": "#player" ,
+				"class": "clickable",
+				"levelchange": "level:hub.json; position:0 1.6 0",
+				"position": "13 2 3"
+			}
 		}
-	},
-	{
-		"type": "a-box",
-		"attr": {
-			"position": "5 2.5 -2.5",
-			"color": "#4CC3D9",
-			"material": "",
-			"geometry": "height:5;width:10",
-			"shadow": ""
-		}
-	},
-	{
-		"type": "a-box",
-		"attr": {
-			"position": "5 5.5 0",
-			"rotation": "90 0 0",
-			"color": "#4CC3D9",
-			"material": "",
-			"geometry": "height:5;width:10",
-			"shadow": ""
-		}
-	},
-	{
-		"type": "a-box",
-		"attr": {
-			"position": "5 2.5 2.5",
-			"color": "#4CC3D9",
-			"material": "",
-			"geometry": "height:5;width:10",
-			"shadow": ""
-		}
-	},
-	
-	{
-		"template": "navNode",
-		"attr": {
-			"position": "-9 2 0",
-			"visible": "false"
-		}
-	},
-	{
-		"template": "navNode",
-		"attr": {
-			"position": "0 2 0"
-		}
-	},
-	{
-		"template": "navNode",
-		"attr": {
-			"position": "9 2 0"
-		}
-	}
-	
-]
+	]
+}

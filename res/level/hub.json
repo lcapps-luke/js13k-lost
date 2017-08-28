@@ -1,0 +1,31 @@
+{
+	"player": {
+		"x": -9,
+		"y": 1.6,
+		"z": 0
+	},
+	"objects":[
+		{
+			"type": "a-plane",
+			"attr": {
+				"rotation": "-90 0 0",
+				"width": "100",
+				"height": "100",
+				"color": "#009b00",
+				"shadow": ""
+			}
+		},
+		{
+			"type": "a-plane",
+			"attr": {
+				"rotation": "90 0 0",
+				"width": "100",
+				"height": "100",
+				"color": "#009b00",
+				"shadow": "",
+				"position": "0 5 0"
+			}
+		}
+
+	]
+}

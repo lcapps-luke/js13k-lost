@@ -34,6 +34,8 @@ AFRAME.registerComponent("navigation", {
 				nav.setAttribute("visible", true);
 			}
 		}
+		
+		player.emit("move", thisPos);
 	}
 	
 });

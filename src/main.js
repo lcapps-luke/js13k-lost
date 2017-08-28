@@ -1,5 +1,13 @@
 AFRAME.registerComponent("lost", {
 	init: function () {
+		this.clickableList = [];
+		
+		var _this = this;
+		this.el.addEventListener("changeLevel", function(e){_this.loadScene(e.detail.level, e.detail.position)});
+		
+		this.player = this.el.sceneEl.querySelector("#player");
+		this.player.addEventListener("move", function(pos){_this.onPlayerMove(pos.detail)});
+		
 		this.loadScene("start.json");
 	},
 	
@@ -7,68 +15,75 @@ AFRAME.registerComponent("lost", {
 		
 	},
 	
-	loadScene: function(sceneName){
+	loadScene: function(sceneName, position){
 		var scene = this.el;
+		
+		//cleanup scene
+		var old = scene.querySelectorAll("a-scene>.vr:not(.global)");
+		for(var i = 0; i < old.length; i++){
+			scene.removeChild(old[i]);
+		}
 		
 		//read scene json
 		var sceneJson = LevelDef.level[sceneName];
-
-		for(var i = 0; i < sceneJson.length; i++){
-			var def = sceneJson[i];
-			//TODO skip if scene has element with same id
-			this.buildElement(scene, def);
-		}
-		//create map of new element ids
+		SceneBuilder.buildChildren(scene, sceneJson.objects);
 		
-		//remove elements from current scene
-			//keep elements with ids that are in new scene map and remove them from the map
-		//add new elements
+		this.clickableList = scene.querySelectorAll(".clickable");
+		
+		console.log(position);
+		var pos = position ? position : sceneJson.player;
+		
+		this.player.setAttribute("position", pos);
+		this.onPlayerMove(pos);
+		
+		this.el.emit("loaded");
 	},
 	
-	buildElement: function(parent, def){
-		var template = {};
-		if("template" in def){
-			template = LevelDef.template[def.template];
+	onPlayerMove: function(to){
+		var scene = this.el;
+		var ray = new THREE.Raycaster();
+		ray.near = 0;
+		var a = new THREE.Vector3(to.x, to.y, to.z);
+		
+		var solids = scene.querySelectorAll(".solid");
+		var solidObjects = [];
+		for(var i = 0; i < solids.length; i++){
+			solidObjects.push(solids[i].object3D);
 		}
 		
-		var ele = document.createElement(this.coalesceVar("type", def, template));
-		var attr = this.mergeAttr(template, def);
-		for(var i in attr){
-			ele.setAttribute(i, attr[i]);
-		}
-		
-		if("children" in template){
-			for(var i = 0; i < template.children.length; i++){
-				this.buildElement(ele, template.children[i]);
+		for(var i = 0; i < this.clickableList.length; i++){
+			var clickable = this.clickableList[i];
+			var enable = false;
+			
+			var pos = clickable.getAttribute("position");
+			if(!pos){
+				continue;
+			}
+			
+			var b = new THREE.Vector3(pos.x, pos.y, pos.z);
+			var dist = a.distanceTo(b);
+			if(dist <= 10){
+				var dir = new THREE.Vector3();
+				dir.subVectors(b, a).normalize();
+				
+				ray.far = dist;
+				ray.set(a, dir);
+				var o = ray.intersectObjects(solidObjects, true);
+				if(o.length == 0){
+					enable = true;
+				}
+			}
+			
+			var hasClickable = clickable.classList.contains("clickable");
+			if(hasClickable && !enable){
+				clickable.classList.remove("clickable");
+			}else if(!hasClickable && enable){
+				clickable.classList.add("clickable");
 			}
 		}
 		
-		if("children" in def){
-			for(var i = 0; i < def.children.length; i++){
-				this.buildElement(ele, def.children[i]);
-			}
-		}
 		
-		//console.log(ele);
-		parent.appendChild(ele);
-	},
-										 
-	coalesceVar: function(variable, a, b){
-		return (variable in a) ? a[variable] : b[variable];
-	},
-	
-	mergeAttr: function(a, b){
-		var res = {};
-		if("attr" in a){
-			for(var i in a.attr){
-				res[i] = a.attr[i];
-			}
-		}
-		if("attr" in b){
-			for(var i in b.attr){
-				res[i] = b.attr[i];
-			}
-		}
-		return res;
+		//update player's raycast list
+		scene.querySelector("#player>.cursor").components.raycaster.refreshObjects();
 	}
 });

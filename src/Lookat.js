@@ -9,7 +9,6 @@ AFRAME.registerComponent("lookat", {
 	},
 	
 	update: function () {
-		console.log(this.data);
 		if(!this.data){
 			return;
 		}
@@ -19,7 +18,6 @@ AFRAME.registerComponent("lookat", {
 		}else{
 			var self = this;
 			return self.data.addEventListener('loaded', function () {
-				console.log("player loaded");
 				self.target = self.data.object3D;
 			});
 		}

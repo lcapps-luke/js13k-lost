@@ -8,5 +8,30 @@
 			"class": "clickable",
 			"navigation": ""
 		}
+	},
+	
+	"tree": {
+		"type": "a-entity",
+		"attr": {
+			"shadow": ""
+		},
+		"children":[
+			{
+				"type": "a-entity",
+				"attr": {
+					"geometry": "radius:0.8;height:6;primitive:cylinder",
+					"material": "color:#804000;roughness:1",
+					"position": "0 3 0"
+				}
+			},
+			{
+				"type": "a-entity",
+				"attr": {
+					"geometry": "radius:2.3;primitive:sphere",
+					"position": "0 7.5 0",
+					"material": "color:#008000;roughness:1"
+				}
+			}
+		]
 	}
 }

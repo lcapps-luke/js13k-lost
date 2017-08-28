@@ -1,0 +1,16 @@
+{
+	"player": {
+		"x": 0,
+		"y": 1.6,
+		"z": 0
+	},
+	"objects":[
+		{
+			"type": "a-entity",
+			"attr": {
+				"maze": "maze: left.json; size: 100 100 100",
+				"position": "0 0 0"
+			}
+		}
+	]
+}
