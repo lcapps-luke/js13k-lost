@@ -18,7 +18,11 @@ module.exports = function(grunt) {
 			
 			for(var i = 0; i < files.length; i++){
 				var f = files[i];
+				if(!f.endsWith(".json")){
+					continue;
+				}
 				
+				console.log("Compiling Maze " + f);
 				var mazeJson = require("./../res/maze/" + f);
 				mazeMap[f] = parseMaze(mazeJson);
 			}
@@ -33,7 +37,7 @@ module.exports = function(grunt) {
 			
 			for(var i = 0; i < files.length; i++){
 				var f = files[i];
-				
+				console.log("Compiling Level " + f);
 				var lvlJson = require("./../res/level/" + f);
 				levelMap[f] = lvlJson;
 			}

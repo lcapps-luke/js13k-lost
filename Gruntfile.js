@@ -1,6 +1,10 @@
 module.exports = function(grunt){
 	grunt.initConfig({
 		pkg: grunt.file.readJSON("package.json"),
+        profile: {
+            default: "release",
+            profiles: ["test", "release"]
+        },
 		uglify: {
 			build: {
 				files: {
@@ -22,15 +26,30 @@ module.exports = function(grunt){
 						{
 							match: "include",
 							replacement: "<%= grunt.file.read('bin/main.min.js') %>"
-						}
+						},
+                        {
+                            match: "aframe",
+                            test: {
+                                replacement: "aframe.min.js"
+                            },
+                            release:{
+                                replacement: "https://aframe.io/releases/0.6.1/aframe.min.js"
+                            }
+                        }
 					]
 				},
 				files: [
 					{
 						expand: true,
 						flatten: true,
-						src: ["bin/index.html"],
-						dest: "build/"
+						dest: "build/",
+                        
+                        test: {
+                            src: ["bin/index.html", "external/aframe.min.js"],
+                        },
+                        release:{
+                            src: ["bin/index.html"]
+                        }
 					}
 				]
 			}
@@ -46,12 +65,16 @@ module.exports = function(grunt){
 	});
 	
 	grunt.loadTasks("tasks");
+    grunt.loadNpmTasks('grunt-profile');
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 	grunt.loadNpmTasks("grunt-minify-html");
 	grunt.loadNpmTasks("grunt-replace");
 	grunt.loadNpmTasks("grunt-zip");
 	
+    grunt.registerTask("default", ["build", "package"]);
+    grunt.registerTask("localBuild", ["profile:test", "build", "package"]);
 	grunt.registerTask("build", ["levelGen", "uglify", "minifyHtml", "replace"]);
 	grunt.registerTask("package", ["zip"]);
-	grunt.registerTask("default", ["build", "package"]);
+    
+	
 };

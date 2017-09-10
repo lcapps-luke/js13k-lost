@@ -1,14 +1,23 @@
 AFRAME.registerComponent("lost", {
 	init: function () {
 		this.clickableList = [];
+		window.lostVars = {
+			leftDone: false,
+			rightDone: false
+		};
+		
+		this.mazeCount = 0;
+		this.mazeLoaded = 0;
 		
 		var _this = this;
 		this.el.addEventListener("changeLevel", function(e){_this.loadScene(e.detail.level, e.detail.position)});
+		this.el.addEventListener("setVariable", function(e){_this.onSetVariable(e.detail[0], e.detail[1])});
+		this.el.addEventListener("mazeLoaded", function(e){_this.onMazeLoaded()});
 		
 		this.player = this.el.sceneEl.querySelector("#player");
 		this.player.addEventListener("move", function(pos){_this.onPlayerMove(pos.detail)});
 		
-		this.loadScene("start.json");
+		this.loadScene("left.json");
 	},
 	
 	tick: function(time, delta){
@@ -17,6 +26,7 @@ AFRAME.registerComponent("lost", {
 	
 	loadScene: function(sceneName, position){
 		var scene = this.el;
+		this.mazeLoaded = 0;
 		
 		//cleanup scene
 		var old = scene.querySelectorAll("a-scene>.vr:not(.global)");
@@ -27,16 +37,31 @@ AFRAME.registerComponent("lost", {
 		//read scene json
 		var sceneJson = LevelDef.level[sceneName];
 		SceneBuilder.buildChildren(scene, sceneJson.objects);
-		
-		this.clickableList = scene.querySelectorAll(".clickable");
-		
-		console.log(position);
+
 		var pos = position ? position : sceneJson.player;
 		
 		this.player.setAttribute("position", pos);
-		this.onPlayerMove(pos);
 		
-		this.el.emit("loaded");
+		var maze = scene.querySelectorAll("[maze]");
+		this.mazeCount = maze.length;
+		
+		if(this.mazeCount == 0){
+			this.clickableList = scene.querySelectorAll(".clickable"); //TODO wait for clickable's position attributes to load
+			this.onPlayerMove(pos);
+			scene.emit("loaded");
+		}
+	},
+	
+	onMazeLoaded: function(){
+		this.mazeLoaded++;
+		if(this.mazeCount == this.mazeLoaded){
+			this.clickableList = this.el.querySelectorAll(".clickable"); //TODO wait for clickable's position attributes to load
+			console.log(this.clickableList);
+			var pos = this.player.getAttribute("position");
+			this.onPlayerMove(pos);
+			this.el.emit("loaded");
+		}
+		console.log("maze loaded " + this.mazeLoaded + " of " + this.mazeCount);
 	},
 	
 	onPlayerMove: function(to){
@@ -62,7 +87,7 @@ AFRAME.registerComponent("lost", {
 			
 			var b = new THREE.Vector3(pos.x, pos.y, pos.z);
 			var dist = a.distanceTo(b);
-			if(dist <= 10){
+			if(dist <= 20){
 				var dir = new THREE.Vector3();
 				dir.subVectors(b, a).normalize();
 				
@@ -82,8 +107,11 @@ AFRAME.registerComponent("lost", {
 			}
 		}
 		
-		
 		//update player's raycast list
 		scene.querySelector("#player>.cursor").components.raycaster.refreshObjects();
+	},
+	
+	onSetVariable: function(name, value){
+		window.lostVars[name] = value;
 	}
 });

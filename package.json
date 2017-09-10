@@ -7,6 +7,7 @@
 		"grunt-minify-html": "latest",
 		"grunt-replace": "latest",
 		"grunt-zip": "latest",
+        "grunt-profile": "latest",
 		"jsfxr": "latest"
 	}
 }

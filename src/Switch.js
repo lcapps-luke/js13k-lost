@@ -1,7 +1,8 @@
 AFRAME.registerComponent("switch", {
 	schema: {
 		target: {type: "selector"},
-		event: {type: "string"}
+		event: {type: "string"},
+		data: {type: "array"}
 	},
 	
 	init: function(){
@@ -12,8 +13,6 @@ AFRAME.registerComponent("switch", {
 	},
 	
 	onClick: function(){
-		console.log("triggering " + this.data.event + " on target:");
-		console.log(this.data.target);
-		this.data.target.emit(this.data.event);
+		this.data.target.emit(this.data.event, this.data.data);
 	}
 });

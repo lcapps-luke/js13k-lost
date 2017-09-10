@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8"/>
-		<script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+		<script src="@@aframe"></script>
 		<script>@@include</script>
 	</head>
 	<body>
@@ -13,7 +13,7 @@
 					geometry="primitive:circle; radius: 0.2;"
 					material="color: cyan; shader: flat;"
 					scale="0.2 0.2 0.2"
-					raycaster="objects:.clickable; far:10"
+					raycaster="objects:.clickable; far:20"
 				>
 					<a-animation begin="fusing" end="mouseleave" easing="ease-in" attribute="scale" from="1.0 1.0 1.0" to="0.2 0.2 0.2" fill="backwards" duration="1000"></a-animation>
 				</a-entity>
