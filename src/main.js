@@ -17,7 +17,7 @@ AFRAME.registerComponent("lost", {
 		this.player = this.el.sceneEl.querySelector("#player");
 		this.player.addEventListener("move", function(pos){_this.onPlayerMove(pos.detail)});
 		
-		this.loadScene("left.json");
+		this.loadScene("right.json");
 	},
 	
 	tick: function(time, delta){
@@ -78,14 +78,15 @@ AFRAME.registerComponent("lost", {
 		
 		for(var i = 0; i < this.clickableList.length; i++){
 			var clickable = this.clickableList[i];
+            if(!clickable.getAttribute("position")){
+                continue;
+            }
+            
 			var enable = false;
-			
-			var pos = clickable.getAttribute("position");
-			if(!pos){
-				continue;
-			}
-			
-			var b = new THREE.Vector3(pos.x, pos.y, pos.z);
+
+            var b = new THREE.Vector3();
+            b.setFromMatrixPosition(clickable.object3D.matrixWorld);
+            
 			var dist = a.distanceTo(b);
 			if(dist <= 20){
 				var dir = new THREE.Vector3();

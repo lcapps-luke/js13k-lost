@@ -9,13 +9,13 @@
 		<a-scene lost>
 			<a-entity id="player" position="-9 0 0" camera="userHeight:1.6" wasd-controls="" rotation="0 270 0" look-controls="" class="global">
 				<a-entity class="cursor"
-					cursor="fuse: true; fuseTimeout: 1000;" position="0 0 -3" 
+					cursor="fuse: true; fuseTimeout: 500;" position="0 0 -1" 
 					geometry="primitive:circle; radius: 0.2;"
 					material="color: cyan; shader: flat;"
-					scale="0.2 0.2 0.2"
+					scale="0.1 0.1 0.1"
 					raycaster="objects:.clickable; far:20"
 				>
-					<a-animation begin="fusing" end="mouseleave" easing="ease-in" attribute="scale" from="1.0 1.0 1.0" to="0.2 0.2 0.2" fill="backwards" duration="1000"></a-animation>
+					<a-animation begin="fusing" end="mouseleave" easing="ease-in" attribute="scale" from="0.5 0.5 0.5" to="0.1 0.1 0.1" fill="backwards" dur="500"></a-animation>
 				</a-entity>
 			</a-entity>
 		</a-scene>
