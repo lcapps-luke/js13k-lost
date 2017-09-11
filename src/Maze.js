@@ -33,6 +33,14 @@ AFRAME.registerComponent("maze", {
         for(var i in maze.switch){
             this.buildSwitch(maze.switch[i], maze.width, maze.height);
         }
+        
+        for(var i in maze.trans){
+            this.buildTrans(maze.trans[i], maze.width, maze.height);
+        }
+        
+        for(var i in maze.lvlDoor){
+            this.buildLvlDoor(maze.lvlDoor[i], maze.width, maze.height);
+        }
 	},
 	
 	buildFloor: function(def, mazeW, mazeH){
@@ -122,7 +130,7 @@ AFRAME.registerComponent("maze", {
                         begin: "open",
                         attribute: "position",
                         from: x + " " + z + " " + y,
-                        to: tx + " 0 " + ty,
+                        to: tx + " " + z + " " + ty,
                         duration: 1500,
                         easing: "ease-in",
                         fill: "forwards"
@@ -171,7 +179,81 @@ AFRAME.registerComponent("maze", {
                 }
             ]
 		};
-		console.log(d);
+		
+		this.el.appendChild(SceneBuilder.buildElement(d));
+    },
+    
+    buildTrans: function(def, mazeW, mazeH){
+        var xo = 0;
+        var zo = 0;
+        if(def.side == "u"){ zo = -0.1; }
+        if(def.side == "r"){ xo = 0.1; }
+        if(def.side == "d"){ zo = 0.1; }
+        if(def.side == "l"){ xo = -0.1; }
+        
+        var x = (def.x / mazeW) * this.data.size.x + xo;
+		var z = (def.y / mazeH) * this.data.size.y + zo;
+        
+        var width = 0.2 + xo;
+        var depth = 0.2 + zo;
+        
+        var px = def.player.x;
+        var py = def.player.y;
+        
+        var d = {
+            type: "a-box",
+            attr: {
+                position: x + " 2 " + z,
+                class: "clickable",
+                lostsound: "snd:click; on: click",
+                geometry: "depth:" + depth + ";width:" + width + ";height:0.2",
+            }
+        }
+        
+        if(def.level != ""){
+            d.attr.levelchange = "level: " + def.level + "; position: " + px + " 1.6 " + py;
+        }
+        
+        this.el.appendChild(SceneBuilder.buildElement(d));
+    },
+    
+    buildLvlDoor: function(def, mazeW, mazeH){
+        var w = (def.width / mazeW) * this.data.size.x;
+		var h = (def.height / mazeH) * this.data.size.y;
+		var x = (def.x / mazeW) * this.data.size.x + w / 2;
+		var y = (def.y / mazeH) * this.data.size.y + h / 2;
+		var z = this.data.size.z / 2;
+        
+        var tx = x + (def.openPos.x / mazeW) * this.data.size.x;
+        var ty = y + (def.openPos.y / mazeH) * this.data.size.y;
+		
+		var d = {
+			type: "a-box",
+			attr: {
+				position: x + " " + z + " " + y,
+				width: w,
+				height: this.data.size.z,
+				depth: h,
+				color: "#ccc",
+				shadow: "",
+				class: "solid",
+                id: def.name
+			},
+            children: [
+                {
+                    type: "a-animation",
+                    attr: {
+                        attribute: "position",
+                        from: x + " " + z + " " + y,
+                        to: tx + " " + z + " " + ty,
+                        duration: 1500,
+                        easing: "ease-in",
+                        fill: "forwards"
+                    }
+                }
+            ]
+		};
+        
 		this.el.appendChild(SceneBuilder.buildElement(d));
     }
 	

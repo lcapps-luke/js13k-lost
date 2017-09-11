@@ -17,7 +17,7 @@ AFRAME.registerComponent("lost", {
 		this.player = this.el.sceneEl.querySelector("#player");
 		this.player.addEventListener("move", function(pos){_this.onPlayerMove(pos.detail)});
 		
-		this.loadScene("right.json");
+		this.loadScene("hub.json");
 	},
 	
 	tick: function(time, delta){
@@ -36,12 +36,12 @@ AFRAME.registerComponent("lost", {
 		
 		//read scene json
 		var sceneJson = LevelDef.level[sceneName];
+        
+        var pos = position ? position : sceneJson.player;
+		this.player.setAttribute("position", pos);
+        
 		SceneBuilder.buildChildren(scene, sceneJson.objects);
 
-		var pos = position ? position : sceneJson.player;
-		
-		this.player.setAttribute("position", pos);
-		
 		var maze = scene.querySelectorAll("[maze]");
 		this.mazeCount = maze.length;
 		

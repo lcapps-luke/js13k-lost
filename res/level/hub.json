@@ -1,29 +1,26 @@
 {
 	"player": {
-		"x": -9,
+		"x": 26.563,
 		"y": 1.6,
-		"z": 0
+		"z": 7.813
 	},
 	"objects":[
-		{
-			"type": "a-plane",
+        {
+			"type": "a-entity",
 			"attr": {
-				"rotation": "-90 0 0",
-				"width": "100",
-				"height": "100",
-				"color": "#009b00",
-				"shadow": ""
+				"maze": "maze: hub.json; size: 50 50 5",
+				"position": "0 0 0"
 			}
 		},
 		{
 			"type": "a-plane",
 			"attr": {
 				"rotation": "90 0 0",
-				"width": "100",
-				"height": "100",
-				"color": "#009b00",
+				"width": "50",
+				"height": "50",
+				"color": "#ccc",
 				"shadow": "",
-				"position": "0 5 0"
+				"position": "25 5 25"
 			}
 		}
 

@@ -74,7 +74,7 @@
 		{
 			"type": "a-box",
 			"attr": {
-				"position": "9.392 2.047 -1.954",
+				"position": "9.392 2 -1.954",
 				"geometry": "depth:0.3;width:0.2;height:0.2",
 				"switch": "target:#door; event:open",
 				"class": "clickable",

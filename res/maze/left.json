@@ -139,12 +139,40 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "name":"LevelTransition",
+         "objects":[],
+         "opacity":1,
+         "properties":
+            {
+             "player_y":45.313
+            },
+         "propertytypes":
+            {
+             "player_y":"float"
+            },
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "name":"LevelDoor",
+         "objects":[],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
  "nextobjectid":9,
  "orientation":"orthogonal",
  "properties":
     {
-     "start":"16.5 15.5"
+     "start":"15.5 16.5"
     },
  "propertytypes":
     {
