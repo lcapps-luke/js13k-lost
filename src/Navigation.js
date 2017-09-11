@@ -1,9 +1,22 @@
 AFRAME.registerComponent("navigation", {
+    schema: {
+        start: {type: "boolean", default: false},
+        first: {type: "boolean", default: true}
+    },
+    
 	init: function(){
 		var _this = this;
 		if(this.el){
 			this.el.addEventListener("click", function(){_this.click()});
 		}
+        
+        if(this.data.start){
+            this.el.setAttribute("visible", false);
+        }
+        
+        if(!this.data.first){
+            this.el.classList.remove("clickable");
+        }
 	},
 	
 	click: function(){

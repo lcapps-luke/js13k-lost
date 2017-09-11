@@ -2,8 +2,8 @@ AFRAME.registerComponent("lost", {
 	init: function () {
 		this.clickableList = [];
 		window.lostVars = {
-			leftDone: false,
-			rightDone: false
+			left_open: false,
+			right_open: false
 		};
 		
 		this.mazeCount = 0;
@@ -46,7 +46,7 @@ AFRAME.registerComponent("lost", {
 		this.mazeCount = maze.length;
 		
 		if(this.mazeCount == 0){
-			this.clickableList = scene.querySelectorAll(".clickable"); //TODO wait for clickable's position attributes to load
+			this.clickableList = scene.querySelectorAll(".clickable");
 			this.onPlayerMove(pos);
 			scene.emit("loaded");
 		}
@@ -55,7 +55,7 @@ AFRAME.registerComponent("lost", {
 	onMazeLoaded: function(){
 		this.mazeLoaded++;
 		if(this.mazeCount == this.mazeLoaded){
-			this.clickableList = this.el.querySelectorAll(".clickable"); //TODO wait for clickable's position attributes to load
+			this.clickableList = this.el.querySelectorAll(".clickable");
 			console.log(this.clickableList);
 			var pos = this.player.getAttribute("position");
 			this.onPlayerMove(pos);
@@ -114,5 +114,6 @@ AFRAME.registerComponent("lost", {
 	
 	onSetVariable: function(name, value){
 		window.lostVars[name] = value;
+        console.log("set variable " + name + " to " + value);
 	}
 });

@@ -57,9 +57,15 @@ function parseNavs(layer){
 }
 
 function parseNav(obj){
+    if(!obj.properties){
+        obj.properties = {};
+    }
+    
 	return {
 		x: obj.x + obj.width / 2,
-		y: obj.y + obj.height / 2
+		y: obj.y + obj.height / 2,
+        start: obj.properties.start ? true : false,
+        first: obj.properties.first ? true : false
 	};
 }
 
@@ -68,12 +74,18 @@ function parseSwitchs(layer){
 }
 
 function parseSwitch(obj){
-    return {
+    var d = {
         x: obj.x + obj.width / 2,
         y: obj.y + obj.height / 2,
         type: obj.properties.type,
         target: obj.properties.target
     };
+    
+    if(obj.properties.indicator){
+        d.indicator = "#" + obj.properties.indicator;
+    }
+    
+    return d;
 }
 
 function parseDoors(layer){
@@ -81,6 +93,11 @@ function parseDoors(layer){
 }
 
 function parseDoor(obj){
+    var variables = [];
+    if(obj.properties.variables){
+        variables = obj.properties.variables.split(" ");
+    }
+    
     return {
         x: obj.x,
 		y: obj.y,
@@ -90,7 +107,8 @@ function parseDoor(obj){
         openPos: {
             x: obj.properties.open_x,
             y: obj.properties.open_y
-        }
+        },
+        variables: variables
     };
 }
 

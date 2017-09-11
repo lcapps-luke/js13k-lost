@@ -23,6 +23,26 @@
 				"shadow": "",
 				"position": "50 5 50"
 			}
-		}
+		},
+        
+        {
+            "type": "a-entity",
+            "attr": {
+                "id": "ind_sub",
+                "position": "86 3 97",
+                "rotation": "90 0 0",
+                "indicator": "variable: dummy; onColour: #0f0; offColour: #030"
+            }
+        },
+        
+        {
+            "type": "a-entity",
+            "attr": {
+                "id": "ind_right",
+                "position": "86 3 3",
+                "rotation": "90 0 0",
+                "indicator": "variable: right_open; onColour: #f00; offColour: #300"
+            }
+        }
 	]
 }

@@ -22,7 +22,24 @@
 				"shadow": "",
 				"position": "25 5 25"
 			}
-		}
-
+		},
+        
+        {
+            "type": "a-entity",
+            "attr": {
+                "position": "30 3 34.5",
+                "rotation": "90 180 0",
+                "indicator": "variable: right_open; onColour: #f00; offColour: #300"
+            }
+        },
+        
+        {
+            "type": "a-entity",
+            "attr": {
+                "position": "20 3 34.5",
+                "rotation": "90 180 0",
+                "indicator": "variable: left_open; onColour: #00f; offColour: #003"
+            }
+        }
 	]
 }

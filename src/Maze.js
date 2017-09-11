@@ -92,10 +92,15 @@ AFRAME.registerComponent("maze", {
 		var z = (def.y / mazeH) * this.data.size.y;
 		
 		var d = {
-			template: "navNode",
-			attr: {
-				position: x + " 2 " + z
-			}
+            type: "a-entity",
+            attr: {
+                geometry: "primitive:circle" ,
+                material: "shader:flat;flatShading:true",
+                lookat: "#player" ,
+                class: "clickable",
+                navigation: "start: " + def.start + "; first: " + def.first,
+                position: x + " 2 " + z
+            }
 		};
 		
 		this.el.appendChild(SceneBuilder.buildElement(d));
@@ -110,6 +115,21 @@ AFRAME.registerComponent("maze", {
         
         var tx = x + (def.openPos.x / mazeW) * this.data.size.x;
         var ty = y + (def.openPos.y / mazeH) * this.data.size.y;
+        
+        if(def.variables.length > 0){
+            var open = true;
+            for(var i = 0; i < def.variables.length; i++){
+                if(!window.lostVars[def.variables[i]]){
+                    open = false;
+                    break;
+                }
+            }
+            
+            if(open){
+                x = tx;
+                y = ty;
+            }
+        }
 		
 		var d = {
 			type: "a-box",
@@ -146,9 +166,10 @@ AFRAME.registerComponent("maze", {
         var x = (def.x / mazeW) * this.data.size.x;
 		var z = (def.y / mazeH) * this.data.size.y;
         var type = def.type;
-        var target = def.type == "global" ? "a-scene" : "#" + def.target;
+        var target = def.type == "variable" ? "a-scene" : "#" + def.target;
         var event = def.type == "door" ? "open" : "setVariable";
-        var data = def.type == "global" ? "; data: " + def.target + ", true" : "";
+        var data = def.type == "variable" ? "; data: " + def.target + ", true" : "";
+        var indicator = def.indicator ? "; indicator: " + def.indicator : "";
 		
 		var d = {
 			type: "a-entity",
@@ -172,7 +193,7 @@ AFRAME.registerComponent("maze", {
                         position: "0 0.5 0",
                         radius: 0.2,
                         color: "#f00",
-                        switch: "target: " + target + "; event: " + event + data,
+                        switch: "target: " + target + "; event: " + event + data + indicator,
                         class: "clickable",
 				        lostsound: "snd:click; on: click"
                     }
