@@ -94,12 +94,12 @@ AFRAME.registerComponent("maze", {
 		var d = {
             type: "a-entity",
             attr: {
-                geometry: "primitive:circle" ,
-                material: "shader:flat;flatShading:true",
+                geometry: "primitive:circle; radius: 0.5" ,
+                material: "shader:flat;flatShading:true; color: #800080",
                 lookat: "#player" ,
                 class: "clickable",
                 navigation: "start: " + def.start + "; first: " + def.first,
-                position: x + " 2 " + z
+                position: x + " 0.5 " + z
             }
 		};
 		

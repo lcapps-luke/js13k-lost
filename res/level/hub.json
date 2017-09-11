@@ -40,6 +40,15 @@
                 "rotation": "90 180 0",
                 "indicator": "variable: left_open; onColour: #00f; offColour: #003"
             }
+        },
+        
+        {
+            "type": "a-entity",
+            "attr": {
+                "position": "25 1.6 46",
+                "rotation": "0 180 0",
+                "text": "width:6;value:The End...\n(this took way longer than anticipated);align:center"
+            }
         }
 	]
 }

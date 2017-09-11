@@ -264,7 +264,7 @@
 		{
 			"template": "navNode",
 			"attr": {
-				"position": "7.5 2 19",
+				"position": "7.5 0.5 19",
 				"visible": "true"
 			}
 		},
@@ -272,7 +272,7 @@
         {
 			"template": "navNode",
 			"attr": {
-				"position": "7.813 2 7.813",
+				"position": "7.813 0.5 7.813",
 				"visible": "true"
 			}
 		},
@@ -280,7 +280,7 @@
         {
 			"template": "navNode",
 			"attr": {
-				"position": "9 2 30",
+				"position": "9 0.5 30",
 				"visible": "false"
 			}
 		}

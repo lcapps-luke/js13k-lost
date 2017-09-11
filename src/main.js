@@ -2,7 +2,7 @@ AFRAME.registerComponent("lost", {
 	init: function () {
 		this.clickableList = [];
 		window.lostVars = {
-			left_open: false,
+			left_open: true,
 			right_open: false
 		};
 		
