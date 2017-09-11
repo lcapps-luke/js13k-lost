@@ -14,7 +14,19 @@
         {
          "draworder":"topdown",
          "name":"Nav",
-         "objects":[],
+         "objects":[
+                {
+                 "ellipse":true,
+                 "height":32,
+                 "id":14,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":64,
+                 "y":64
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -34,8 +46,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":576,
-                 "y":448
+                 "x":128,
+                 "y":32
                 }, 
                 {
                  "height":32,
@@ -44,9 +56,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":128,
-                 "x":448,
-                 "y":544
+                 "width":64,
+                 "x":0,
+                 "y":128
                 }, 
                 {
                  "height":128,
@@ -56,8 +68,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":448,
-                 "y":416
+                 "x":0,
+                 "y":0
                 }, 
                 {
                  "height":32,
@@ -67,8 +79,19 @@
                  "type":"",
                  "visible":true,
                  "width":128,
-                 "x":480,
-                 "y":416
+                 "x":32,
+                 "y":0
+                }, 
+                {
+                 "height":32,
+                 "id":9,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":96,
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -81,26 +104,45 @@
          "name":"Floor",
          "objects":[
                 {
-                 "height":1024,
+                 "height":160,
                  "id":1,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1024,
+                 "width":160,
                  "x":0,
                  "y":0
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
         {
          "draworder":"topdown",
          "name":"Door",
-         "objects":[],
+         "objects":[
+                {
+                 "height":16,
+                 "id":17,
+                 "name":"",
+                 "properties":
+                    {
+                     "variables":"dummy"
+                    },
+                 "propertytypes":
+                    {
+                     "variables":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":64,
+                 "y":136
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -111,29 +153,7 @@
          "color":"#ff0000",
          "draworder":"topdown",
          "name":"Switch",
-         "objects":[
-                {
-                 "ellipse":true,
-                 "height":32,
-                 "id":7,
-                 "name":"",
-                 "properties":
-                    {
-                     "target":"test",
-                     "type":"global"
-                    },
-                 "propertytypes":
-                    {
-                     "target":"string",
-                     "type":"string"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":512,
-                 "y":480
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -143,7 +163,29 @@
         {
          "draworder":"topdown",
          "name":"LevelTransition",
-         "objects":[],
+         "objects":[
+                {
+                 "ellipse":true,
+                 "height":64,
+                 "id":15,
+                 "name":"",
+                 "properties":
+                    {
+                     "level":"",
+                     "side":"u"
+                    },
+                 "propertytypes":
+                    {
+                     "level":"string",
+                     "side":"string"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":32,
+                 "y":96
+                }],
          "opacity":1,
          "properties":
             {
@@ -168,7 +210,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":9,
+ "nextobjectid":18,
  "orientation":"orthogonal",
  "properties":
     {

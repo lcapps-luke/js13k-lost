@@ -17,7 +17,7 @@ AFRAME.registerComponent("lost", {
 		this.player = this.el.sceneEl.querySelector("#player");
 		this.player.addEventListener("move", function(pos){_this.onPlayerMove(pos.detail)});
 		
-		this.loadScene("hub.json");
+		this.loadScene("start.json");
 	},
 	
 	tick: function(time, delta){
